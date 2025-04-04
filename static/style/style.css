@@ -1,0 +1,577 @@
+/* start global rules */
+* {
+  padding: 0;
+  margin: 0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+}
+
+ul {
+  list-style: none;
+}
+
+input, button {
+  outline: none;
+}
+
+a {
+  text-decoration: none;
+}
+/* end global rules */
+
+
+main {
+  min-height: calc(100vh - 43px);
+  padding: 10px;
+  background-color: #272727;
+}
+
+main section {
+  width: 100%;
+  min-height: calc(100vh - (20px + 43px));
+  display: flex;
+  justify-content: center;
+}
+
+
+
+/* start_game */
+main section .start_game {
+  padding: 20px 40px;
+  font-size: 30px;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  background-color: rgb(124, 124, 255);
+  cursor: pointer;
+  align-self: center;
+  transition: background-color 0.3s;
+  display: none;
+}
+main section .start_game:hover {
+  background-color: rgb(68, 68, 255);
+}
+main section .start_game:active {
+  background-color: rgb(21, 21, 255);
+}
+main section .active_start_game {
+  display: block;
+}
+
+
+/* game_container */
+main section .game_container {
+  max-width: 700px;
+  padding: 10px;
+  background-color: white;
+  align-self: flex-start;
+  display: none;
+}
+main section .active_game_container {
+  display: block;
+}
+
+
+main section .game_container .container_head {
+  padding: 10px;
+  background-color: rgb(235, 235, 235);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+main section .game_container .container_head .head_name {
+  font-size: 18px;
+}
+
+main section .game_container .container_head .head_hint {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+main section .game_container .container_head .head_hint .hint_head {
+  font-size: 18px;
+}
+
+main section .game_container .container_head .head_hint .hint_content {
+  font-size: 18px;
+  color: blue;
+}
+
+
+main section .game_container .container_main {
+  padding: 10px;
+  margin: 10px 0;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+main section .game_container .container_main .main_hangman {
+  flex-basis: 50%;
+  height: 300px;
+  padding: 10px;
+  background-color: rgb(235, 235, 235);
+}
+
+main section .game_container .container_main .main_hangman .hangman_box {
+  position: relative;
+  width: 280px;
+  height: 280px;
+  margin: auto;
+}
+
+main section .game_container .container_main .main_hangman .hangman_box .box_wrong {
+  position: absolute;
+  display: none;
+}
+main section .game_container .container_main .main_hangman .hangman_box .active_box_wrong {
+  display: block;
+}
+
+main section .game_container .container_main .main_hangman .hangman_box .box_stick1 {
+  bottom: 10px;
+  left: 60px;
+  width: 55px;
+  height: 5px;
+  background-color: black;
+  border-radius: 3px;
+}
+
+main section .game_container .container_main .main_hangman .hangman_box .box_stick2 {
+  bottom: 10px;
+  left: 85px;
+  width: 5px;
+  height: calc(100% - 20px);
+  background-color: black;
+  border-radius: 3px;
+}
+
+main section .game_container .container_main .main_hangman .hangman_box .box_stick3 {
+  top: 20px;
+  left: 85px;
+  width: 100px;
+  height: 5px;
+  background-color: black;
+}
+main section .game_container .container_main .main_hangman .hangman_box .box_stick3::before {
+  position: absolute;
+  content: "";
+  top: 5px;
+  left: 95px;
+  width: 5px;
+  height: 20px;
+  background-color: black;
+}
+
+main section .game_container .container_main .main_hangman .hangman_box .box_rope {
+  top: 45px;
+  left: 150px;
+  width: 65px;
+  height: 65px;
+  border: 2px dashed black;
+  border-radius: 50%;
+}
+
+main section .game_container .container_main .main_hangman .hangman_box .box_head {
+  top: 53px;
+  left: 159px;
+  width: 48px;
+  height: 48px;
+  border: 3px solid black;
+  border-radius: 50%;
+}
+
+main section .game_container .container_main .main_hangman .hangman_box .box_body {
+  top: 100px;
+  left: 181px;
+  width: 3px;
+  height: 100px;
+  background-color: black;
+}
+
+main section .game_container .container_main .main_hangman .hangman_box .box_hands {
+  top: 130px;
+  left: 183px;
+}
+main section .game_container .container_main .main_hangman .hangman_box .box_hands::before {
+  position: absolute;
+  content: "";
+  top: 0px;
+  left: -39px;
+  width: 40px;
+  height: 3px;
+  background-color: black;
+  border-radius: 3px;
+  transform: rotate(25deg);
+}
+main section .game_container .container_main .main_hangman .hangman_box .box_hands::after {
+  position: absolute;
+  content: "";
+  top: 0px;
+  left: -2px;
+  width: 40px;
+  height: 3px;
+  background-color: black;
+  border-radius: 3px;
+  transform: rotate(-25deg);
+}
+
+main section .game_container .container_main .main_hangman .hangman_box .box_legs {
+  top: 205px;
+  left: 183px;
+}
+main section .game_container .container_main .main_hangman .hangman_box .box_legs::before {
+  position: absolute;
+  content: "";
+  top: 0px;
+  left: -39px;
+  width: 40px;
+  height: 3px;
+  background-color: black;
+  border-radius: 3px;
+  transform: rotate(-25deg);
+}
+main section .game_container .container_main .main_hangman .hangman_box .box_legs::after {
+  position: absolute;
+  content: "";
+  top: 0px;
+  left: -2px;
+  width: 40px;
+  height: 3px;
+  background-color: black;
+  border-radius: 3px;
+  transform: rotate(25deg);
+}
+
+main section .game_container .container_main .main_keyboard {
+  flex-basis: 50%;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+main section .game_container .container_main .main_keyboard .keyboard_btn {
+  padding: 5px 10px;
+  font-size: 18px;
+  background-color: rgb(200, 200, 200);
+  color: white;
+  border: 2px solid rgb(200, 200, 200);
+  border-radius: 5px;
+  cursor: no-drop;
+  transition: background-color 0.2s;
+}
+main section .game_container .container_main .main_keyboard .active_keyboard_btn {
+  background-color: rgb(124, 124, 255);
+  border: 2px solid blue;
+  cursor: pointer;
+}
+main section .game_container .container_main .main_keyboard .active_keyboard_btn:hover {
+  background-color: rgb(68, 68, 255);
+}
+main section .game_container .container_main .main_keyboard .active_keyboard_btn:active {
+  background-color: rgb(21, 21, 255);
+}
+
+
+main section .game_container .container_foot {
+  padding: 10px;
+  background-color: rgb(235, 235, 235);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+main section .game_container .container_foot .foot_box {
+  width: 40px;
+  height: 40px;
+  font-size: 25px;
+  font-weight: bold;
+  background-color: white;
+  border-bottom: 2px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+main section .game_container .container_foot .active_foot_box {
+  border-bottom: 2px solid transparent;
+}
+
+main section .game_container .container_foot .foot_space {
+  width: 20px;
+  height: 4px;
+  background-color: black;
+}
+
+main section .game_container .result_content {
+  width: fit-content;
+  margin: 10px auto;
+  font-size: 18px;
+  display: none;
+}
+main section .game_container .active_result_content {
+  display: block;
+}
+
+main section .game_container .result_content .content_color {
+  margin-top: 10px;
+  font-size: 20px;
+  font-weight: bold;
+  color: blue;
+  text-align: center;
+  display: block;
+}
+
+main section .game_container .reset {
+  width: fit-content;
+  margin: 10px 0 0 auto;
+  padding: 10px 20px;
+  font-size: 20px;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  background-color: rgb(124, 124, 255);
+  cursor: pointer;
+  transition: background-color 0.3s;
+  display: none;
+}
+main section .game_container .reset:hover {
+  background-color: rgb(68, 68, 255);
+}
+main section .game_container .reset:active {
+  background-color: rgb(21, 21, 255);
+}
+main section .game_container .active_reset {
+  display: block;
+}
+
+
+
+@media (max-width: 767px) {
+  main {
+    min-height: calc(100vh - 38px);
+    padding: 5px;
+  }
+  
+  main section {
+    min-height: calc(100vh - (10px + 38px));
+  }
+  
+  
+  
+  /* start_game */
+  main section .start_game {
+    padding: 10px 20px;
+    font-size: 20px;
+    border-radius: 5px;
+  }
+  
+  
+  /* game_container */
+  main section .game_container {
+    padding: 5px;
+  }
+  
+  
+  main section .game_container .container_head {
+    padding: 5px;
+  }
+  
+  main section .game_container .container_head .head_name {
+    font-size: 12px;
+  }
+  
+  main section .game_container .container_head .head_hint .hint_head {
+    font-size: 12px;
+  }
+  
+  main section .game_container .container_head .head_hint .hint_content {
+    font-size: 12px;
+  }
+  
+  
+  main section .game_container .container_main {
+    padding: 5px;
+    margin: 5px 0;
+    flex-direction: column;
+  }
+  
+  main section .game_container .container_main .main_hangman {
+    padding: 5px;
+  }
+  
+  main section .game_container .container_main .main_hangman .hangman_box {
+    width: 170px;
+    height: 170px;
+  }
+  
+  main section .game_container .container_main .main_hangman .hangman_box .box_stick1 {
+    bottom: 5px;
+    left: 40px;
+    width: 30px;
+    height: 3px;
+  }
+  
+  main section .game_container .container_main .main_hangman .hangman_box .box_stick2 {
+    bottom: 5px;
+    left: 55px;
+    width: 3px;
+    height: calc(100% - 10px);
+  }
+  
+  main section .game_container .container_main .main_hangman .hangman_box .box_stick3 {
+    top: 12px;
+    left: 57px;
+    width: 50px;
+    height: 3px;
+  }
+  main section .game_container .container_main .main_hangman .hangman_box .box_stick3::before {
+    top: 3px;
+    left: 47px;
+    width: 3px;
+    height: 10px;
+  }
+  
+  main section .game_container .container_main .main_hangman .hangman_box .box_rope {
+    top: 25px;
+    left: 85px;
+    width: 40px;
+    height: 40px;
+    border: 1px dashed black;
+  }
+  
+  main section .game_container .container_main .main_hangman .hangman_box .box_head {
+    top: 30px;
+    left: 90px;
+    width: 30px;
+    height: 30px;
+    border: 2px solid black;
+  }
+  
+  main section .game_container .container_main .main_hangman .hangman_box .box_body {
+    top: 60px;
+    left: 104px;
+    width: 2px;
+    height: 50px;
+  }
+  
+  main section .game_container .container_main .main_hangman .hangman_box .box_hands {
+    top: 68px;
+    left: 105px;
+  }
+  main section .game_container .container_main .main_hangman .hangman_box .box_hands::before {
+    left: -20px;
+    width: 20px;
+    height: 2px;
+  }
+  main section .game_container .container_main .main_hangman .hangman_box .box_hands::after {
+    left: 0;
+    width: 20px;
+    height: 2px;
+  }
+  
+  main section .game_container .container_main .main_hangman .hangman_box .box_legs {
+    top: 113px;
+    left: 105px;
+  }
+  main section .game_container .container_main .main_hangman .hangman_box .box_legs::before {
+    left: -20px;
+    width: 20px;
+    height: 2px;
+  }
+  main section .game_container .container_main .main_hangman .hangman_box .box_legs::after {
+    left: 0;
+    width: 20px;
+    height: 2px;
+  }
+  
+  main section .game_container .container_main .main_keyboard {
+    padding: 5px;
+  }
+  
+  main section .game_container .container_main .main_keyboard .keyboard_btn {
+    padding: 4px 8px;
+    font-size: 16px;
+  }
+  
+  
+  main section .game_container .container_foot {
+    padding: 5px;
+  }
+  
+  main section .game_container .container_foot .foot_box {
+    width: 30px;
+    height: 30px;
+    font-size: 20px;
+    border-bottom: 1px solid black;
+  }
+  main section .game_container .container_foot .active_foot_box {
+    border-bottom: 1px solid transparent;
+  }
+  
+  main section .game_container .container_foot .foot_space {
+    width: 15px;
+    height: 2px;
+  }
+  
+  main section .game_container .result_content {
+    margin: 5px auto;
+    font-size: 12px;
+  }
+  
+  main section .game_container .result_content .content_color {
+    margin-top: 5px;
+    font-size: 16px;
+  }
+  
+  main section .game_container .reset {
+    margin: 5px 0 0 auto;
+    padding: 5px 10px;
+    font-size: 12px;
+    border-radius: 5px;
+  }
+}
+
+
+
+
+/* footer */
+footer {
+  padding: 10px;
+  background-color: black;
+  color: white;
+  text-align: center;
+}
+
+footer .copy_right p {
+  font-size: 16px;
+}
+
+footer .copy_right p span {
+  font-size: 20px;
+  color: blue;
+}
+
+@media (max-width: 767px) {
+  footer .copy_right p {
+    font-size: 12px;
+  }
+  
+  footer .copy_right p span {
+    font-size: 16px;
+  }
+}
